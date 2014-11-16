@@ -16,8 +16,7 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
-  - dir C:\projects\julia\etc
-  - dir C:\projects\julia\etc\julia
+  - echo 'println("juliarc included")' >> C:\projects\julia\etc\julia\juliarc.jl
   - cat C:\projects\julia\etc\julia\juliarc.jl
   - C:\projects\julia\bin\julia -e "println(ENV[\"PATH\"])"
 #  - C:\projects\julia\bin\julia -e "run(`echo hello`)"
