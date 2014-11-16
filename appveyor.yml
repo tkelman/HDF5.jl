@@ -4,8 +4,8 @@ environment:
   - JULIAVERSION: "stable/win32"
   - JULIAVERSION: "stable/win64"
 # Nightlies
-  - JULIAVERSION: "download/win32"
-  - JULIAVERSION: "download/win64"
+#  - JULIAVERSION: "download/win32"
+#  - JULIAVERSION: "download/win64"
 
 install:
 # Download most recent Julia Windows binary
@@ -16,6 +16,8 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
+  - C:\projects\julia\bin\julia -e "ENV[\"PATH\"]"
+  - C:\projects\julia\bin\julia -e "run(`which echo`)"
   - C:\projects\julia\bin\julia -e "versioninfo(); Pkg.init(); Pkg.add(\"DataFrames\"); Pkg.clone(pwd(), \"HDF5\"); Pkg.build(\"HDF5\")"
 
 test_script:
