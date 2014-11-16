@@ -16,8 +16,8 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
-  - C:\projects\julia\bin\julia -e "ENV[\"PATH\"]"
-  - C:\projects\julia\bin\julia -e "run(`which echo`)"
+  - set PATH
+  - where echo
   - C:\projects\julia\bin\julia -e "versioninfo(); Pkg.init(); Pkg.add(\"DataFrames\"); Pkg.clone(pwd(), \"HDF5\"); Pkg.build(\"HDF5\")"
 
 test_script:
